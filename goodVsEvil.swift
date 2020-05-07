@@ -1,4 +1,4 @@
-func mostCommonName(array: [String]) -> String {
+func mostCommonName(_ array: [String]) -> String {
 
     var dictionary = [String: Int]()
 
@@ -10,18 +10,19 @@ func mostCommonName(array: [String]) -> String {
         }
     }
 
-    var mostCommonName = ""
+    var mostCommonName = ""  
 
     for key in dictionary.keys {
         if mostCommonName == "" {
             mostCommonName = key
         } else {
-            let count = dictionary[key]
-            if count > dictionary[mostCommonName] {
+            let count = dictionary[key]!
+            if count > dictionary[mostCommonName]! {
                 mostCommonName = key
             }
         }
     }
+    print(mostCommonName)
     return mostCommonName
 }
 
