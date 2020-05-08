@@ -1,4 +1,5 @@
 import UIKit
+
 class Node<T> {
     
         var value: T
@@ -76,6 +77,24 @@ public class LinkedList {
     }
 }
 
-// https://www.raywenderlich.com/947-swift-algorithm-club-swift-linked-list-data-structure
-// https://www.youtube.com/watch?v=gNu-F_LnC0I
+public struct Queue {
 
+    fileprivate var list = LinkedList<Int>()
+    public mutating func enqueue(_ element: Int) {
+      list.append(element)
+    }
+    
+    public mutating func dequeue() -> Int? {
+      guard !list.isEmpty, let element = list.first else { return nil }
+      list.remove(element)
+      return element.value
+    }
+    
+    public func peek() -> Int? {
+      return list.first?.value
+    }
+    
+    public var isEmpty: Bool {
+      return list.isEmpty
+    }
+}
