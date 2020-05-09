@@ -44,6 +44,58 @@ enum BinaryTree<T: Comparable> {
       self = newTreeWithInsertedValue(newValue: newValue)
     }
     
+    func traverseInOrder(process: @noescape (T) -> ()) {
+      switch self {
+          case .empty:
+            return
+          case let .node(left, value, right):
+            left.traverseInOrder(process: process)
+            process(value)
+            right.traverseInOrder(process: process)
+      }
+    }
+    
+    func traversePreOrder( process: @noescape (T) -> ()) {
+      switch self {
+      case .empty:
+        return
+      case let .node(left, value, right):
+        process(value)
+        left.traversePreOrder(process: process)
+        right.traversePreOrder(process: process)
+      }
+    }
+    
+    func traversePostOrder( process: @noescape (T) -> ()) {
+      switch self {
+      case .empty:
+        return
+      case let .node(left, value, right):
+        left.traversePostOrder(process: process)
+        right.traversePostOrder(process: process)
+        process(value)
+      }
+    }
+    
+    func search(searchValue: T) -> BinaryTree? {
+      switch self {
+      case .empty:
+        return nil
+      case let .node(left, value, right):
+        // 1
+        if searchValue == value {
+          return self
+        }
+     
+        // 2
+        if searchValue < value {
+          return left.search(searchValue: searchValue)
+        } else {
+          return right.search(searchValue: searchValue)
+        }
+      }
+    }
+    
 }
 
 var binaryTree: BinaryTree<Int> = .empty
@@ -51,3 +103,7 @@ binaryTree.insert(newValue: 5)
 print(binaryTree)
 binaryTree.insert(newValue: 1)
 print(binaryTree)
+
+// -----------------------------
+
+
