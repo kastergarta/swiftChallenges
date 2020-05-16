@@ -27,4 +27,4 @@ func mostCommonName(_ array: [String]) -> String {
 }
 
 let nameArr = ["Dennis", "Anna", "Kissinger", "Anna"]
-mostCommonName(nameArr)
+mostCommonName(nameArr) 
